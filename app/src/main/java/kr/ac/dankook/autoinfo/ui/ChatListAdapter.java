@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import kr.ac.dankook.autoinfo.R;
-import kr.ac.dankook.autoinfo.model.ChatRoom;
+import kr.ac.dankook.autoinfo.models.ChatRoom;
 
 // 채팅방 목록을 RecyclerView에 표시해주는 어댑터
 public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatViewHolder> {

@@ -1,4 +1,4 @@
-package kr.ac.dankook.autoinfo.model;
+package kr.ac.dankook.autoinfo.models;
 
 // 채팅방 1개에 대한 정보를 담는 클래스
 public class ChatRoom {

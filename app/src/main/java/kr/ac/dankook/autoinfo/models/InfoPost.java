@@ -1,4 +1,4 @@
-package kr.ac.dankook.autoinfo.model;
+package kr.ac.dankook.autoinfo.models;
 
 // 인포(정보 상품) 하나를 표현하는 클래스
 public class InfoPost {
@@ -54,4 +54,3 @@ public class InfoPost {
         return sellerName;
     }
 }
-// === 여기까지 복붙 ===

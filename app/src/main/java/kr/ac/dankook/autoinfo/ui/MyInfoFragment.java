@@ -1,32 +1,42 @@
 package kr.ac.dankook.autoinfo.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
+import kr.ac.dankook.autoinfo.NewInfoActivity;
 import kr.ac.dankook.autoinfo.R;
 
-// "내 인포" 탭에서 보여줄 화면을 담당하는 Fragment
 public class MyInfoFragment extends Fragment {
 
-    // 빈 생성자 (Fragment는 기본 생성자 필수)
     public MyInfoFragment() {
+        // 기본 생성자
     }
 
-    // Fragment가 실제로 화면에 어떤 레이아웃을 쓸지 정하는 부분
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        // fragment_my_info.xml 레이아웃을 inflate 해서 화면으로 사용
-        return inflater.inflate(R.layout.fragment_my_info, container, false);
+        // fragment_my_info.xml 화면 inflate
+        View rootView = inflater.inflate(R.layout.fragment_my_info, container, false);
+
+        // 1) 버튼 가져오기
+        Button btnAddNewInfo = rootView.findViewById(R.id.btn_add_new_info);
+
+        // 2) 버튼 클릭 → NewInfoActivity로 이동
+        btnAddNewInfo.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext(), NewInfoActivity.class);
+            startActivity(intent);
+        });
+
+        return rootView;
     }
 }
-// === 여기까지 복붙 ===
-

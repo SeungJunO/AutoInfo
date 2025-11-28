@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.ac.dankook.autoinfo.R;
-import kr.ac.dankook.autoinfo.model.ChatRoom;
+import kr.ac.dankook.autoinfo.models.ChatRoom;
 
 public class ChatFragment extends Fragment {
 

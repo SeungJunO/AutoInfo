@@ -1,5 +1,4 @@
-// === 여기부터 복붙: InfoRepository.java ===
-package kr.ac.dankook.autoinfo.model;
+package kr.ac.dankook.autoinfo.models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,4 +57,3 @@ public class InfoRepository {
         return cnt;
     }
 }
-// === 여기까지 복붙 ===

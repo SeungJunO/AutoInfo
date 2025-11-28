@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import kr.ac.dankook.autoinfo.model.InfoRepository;
+import kr.ac.dankook.autoinfo.models.InfoRepository;
 
 public class NewInfoActivity extends AppCompatActivity {
 

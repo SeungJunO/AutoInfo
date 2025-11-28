@@ -29,7 +29,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
+
 
 dependencies {
 
@@ -37,7 +41,19 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+
+
+    // 프로젝트에 명시적으로 필요한 라이브러리들
+    implementation("androidx.recyclerview:recyclerview:1.3.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+
+    // Firebase (필요시 google-services 플러그인 및 프로젝트 레벨 설정 확인)
+    implementation("com.google.firebase:firebase-auth:22.1.1")
+    implementation("com.google.firebase:firebase-firestore:24.7.0")
+    implementation("com.google.firebase:firebase-analytics:21.3.0")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
 }
