@@ -82,4 +82,5 @@ public class ChatFragment extends Fragment {
         chatRoomList.add(new ChatRoom("room3", "인스타 리셀링 문의", "혹시 환불 규정이 어떻게 되나요?", "3분 전"));
     }
 }
+
 // === 여기까지 복붙: ChatFragment.java ===

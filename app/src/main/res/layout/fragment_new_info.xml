@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- 스크롤 가능하게 감싸는 레이아웃 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- 제목 입력 -->
+        <TextView
+            android:id="@+id/tvNewInfoTitleLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="인포 제목"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/etInfoTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="예) 네이버 스마트스토어 시작 가이드"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="12dp" />
+
+        <!-- 카테고리 선택 -->
+        <TextView
+            android:id="@+id/tvCategoryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="카테고리"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <Spinner
+            android:id="@+id/spinnerCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" />
+
+        <!-- 가격 입력 -->
+        <TextView
+            android:id="@+id/tvPriceLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="가격 (원)"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/etPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="예) 9900"
+            android:inputType="number"
+            android:layout_marginBottom="12dp" />
+
+        <!-- 설명 입력 -->
+        <TextView
+            android:id="@+id/tvDescLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="설명"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/etShortDesc"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:hint="어떤 정보를 주는 인포인지 상세하게 설명해주세요."
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:layout_marginBottom="12dp" />
+
+        <!-- 파일 선택 (지금은 더미 버튼, 나중에 실제 파일 업로드 연결) -->
+        <TextView
+            android:id="@+id/tvFileLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="첨부 파일"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btnSelectFile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="파일 선택" />
+
+            <TextView
+                android:id="@+id/tvSelectedFileName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="12dp"
+                android:text="선택된 파일 없음"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- 등록 버튼 -->
+        <Button
+            android:id="@+id/btnSubmitInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="인포 등록하기"
+            android:textAllCaps="false"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+
+</ScrollView>

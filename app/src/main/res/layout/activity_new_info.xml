@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_newinfo_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="새 인포 등록"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_newinfo_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="링크와 기본 정보를 입력하면 인포를 등록할 수 있습니다."
+            android:textSize="12sp"
+            android:textColor="#666666"
+            android:layout_marginTop="4dp" />
+
+        <!-- 인포 제목 -->
+        <EditText
+            android:id="@+id/et_info_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="인포 제목"
+            android:layout_marginTop="16dp" />
+
+        <!-- 카테고리 -->
+        <EditText
+            android:id="@+id/et_info_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="카테고리 (예: 마케팅, 재테크)"
+            android:layout_marginTop="12dp" />
+
+        <!-- 가격 -->
+        <EditText
+            android:id="@+id/et_info_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="가격 (원)"
+            android:inputType="number"
+            android:layout_marginTop="12dp" />
+
+        <!-- 링크 -->
+        <EditText
+            android:id="@+id/et_info_link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="상품/정보 링크 URL"
+            android:inputType="textUri"
+            android:layout_marginTop="12dp" />
+
+        <!-- 설명 -->
+        <EditText
+            android:id="@+id/et_info_description"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:gravity="top|start"
+            android:hint="인포에 대한 설명을 입력하세요."
+            android:layout_marginTop="12dp"
+            android:background="@android:drawable/edit_text" />
+
+        <!-- 등록 버튼 -->
+        <Button
+            android:id="@+id/btn_save_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="등록 완료"
+            android:layout_marginTop="20dp" />
+
+        <!-- 에러 텍스트 -->
+        <TextView
+            android:id="@+id/tv_newinfo_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FF4444"
+            android:textSize="12sp"
+            android:visibility="gone"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+</ScrollView>
+    <!-- === 여기까지 복붙 === -->
