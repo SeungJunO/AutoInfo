@@ -51,6 +51,10 @@ dependencies {
     implementation("com.google.firebase:firebase-auth:22.1.1")
     implementation("com.google.firebase:firebase-firestore:24.7.0")
     implementation("com.google.firebase:firebase-analytics:21.3.0")
+    // === 여기부터 복붙: build.gradle.kts dependencies 블록 안에 추가 ===
+    implementation("com.google.firebase:firebase-firestore")
+    // === 여기까지 복붙 ===
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

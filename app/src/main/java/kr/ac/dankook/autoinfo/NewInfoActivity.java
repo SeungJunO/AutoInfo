@@ -10,73 +10,71 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import kr.ac.dankook.autoinfo.firebase.FirebasePostManager;
+import kr.ac.dankook.autoinfo.models.InfoPost;
 import kr.ac.dankook.autoinfo.models.InfoRepository;
 
 public class NewInfoActivity extends AppCompatActivity {
 
-    private EditText etTitle, etCategory, etPrice, etLink, etDescription;
-    private TextView tvError;
-    private Button btnSave;
+    private EditText etTitle, etDesc, etCategory, etPrice, etLink;
+    private Button btnSubmit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_info);
+        setContentView(R.layout.activity_new_info); // 기존 xml 그대로 유지
 
+        // ↓↓ 이 부분만 네 XML ID 맞추기 ↓↓
         etTitle = findViewById(R.id.et_info_title);
-        etCategory = findViewById(R.id.et_info_category);
+        etDesc = findViewById(R.id.et_info_description);
+        etCategory = findViewById(R.id.et_info_category); // 없으면 하드코딩 가능
         etPrice = findViewById(R.id.et_info_price);
         etLink = findViewById(R.id.et_info_link);
-        etDescription = findViewById(R.id.et_info_description);
-        tvError = findViewById(R.id.tv_newinfo_error);
-        btnSave = findViewById(R.id.btn_save_info);
+        btnSubmit = findViewById(R.id.btn_save_info);
+        // ↑↑ 네 레이아웃 ID에 맞는지 확인 ↑↑
 
-        btnSave.setOnClickListener(v -> saveInfo());
-    }
+        btnSubmit.setOnClickListener(v -> {
 
-    private void saveInfo() {
-        String title = etTitle.getText().toString().trim();
-        String category = etCategory.getText().toString().trim();
-        String priceStr = etPrice.getText().toString().trim();
-        String link = etLink.getText().toString().trim();
-        String desc = etDescription.getText().toString().trim();
+            String title = etTitle.getText().toString().trim();
+            String desc = etDesc.getText().toString().trim();
+            String category = etCategory.getText().toString().trim();
+            String priceText = etPrice.getText().toString().trim();
+            String link = etLink.getText().toString().trim();
 
-        if (TextUtils.isEmpty(title)) {
-            showError("인포 제목을 입력해주세요.");
-            return;
-        }
-        if (TextUtils.isEmpty(category)) {
-            showError("카테고리를 입력해주세요.");
-            return;
-        }
-        if (TextUtils.isEmpty(priceStr)) {
-            showError("가격을 입력해주세요.");
-            return;
-        }
+            if (title.isEmpty() || priceText.isEmpty()) {
+                Toast.makeText(this, "제목과 가격은 필수입니다.", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-        int price;
-        try {
-            price = Integer.parseInt(priceStr);
-        } catch (NumberFormatException e) {
-            showError("가격은 숫자로 입력해주세요.");
-            return;
-        }
+            int price;
+            try {
+                price = Integer.parseInt(priceText);
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, "가격은 숫자로 입력해주세요.", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-        // TODO: 로그인 기능 붙인 후에는 실제 로그인된 사용자 닉네임/UID를 넣으면 됨
-        String sellerName = "테스트판매자";
+            // 일단 sellerName은 임시로 고정값
+            String sellerName = "테스트판매자";
 
-        // 저장소에 인포 추가
-        InfoRepository.getInstance()
-                .addPost(title, desc, category, price, link, sellerName);
+            InfoPost post = new InfoPost(
+                    null,  // Firestore가 ID 자동 생성함
+                    title, desc, category, price, link, sellerName
+            );
 
-        Toast.makeText(this, "인포가 등록되었습니다.", Toast.LENGTH_SHORT).show();
-        setResult(RESULT_OK);
-        finish(); // 화면 닫고 이전 화면으로 복귀
-    }
+            FirebasePostManager.getInstance()
+                    .createPost(post, new FirebasePostManager.OnPostResultListener() {
+                        @Override
+                        public void onSuccess() {
+                            Toast.makeText(NewInfoActivity.this, "인포 등록 완료!", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
 
-    private void showError(String msg) {
-        tvError.setText(msg);
-        tvError.setVisibility(View.VISIBLE);
+                        @Override
+                        public void onError(Exception e) {
+                            Toast.makeText(NewInfoActivity.this, "등록 실패: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        });
     }
 }
-// === 여기까지 복붙 ===
