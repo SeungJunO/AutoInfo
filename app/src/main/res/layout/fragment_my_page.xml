@@ -145,6 +145,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="내 구매함"
+            android:backgroundTint="#009688"
             android:layout_marginTop="8dp" />
 
         <!-- 내 인포로 바로 가기 -->
@@ -153,6 +154,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="내 인포 관리"
+            android:backgroundTint="#009688"
             android:layout_marginTop="8dp" />
 
         <!-- 알림/키워드 설정 (나중에 구현 예정) -->
@@ -161,6 +163,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="알림 / 키워드 설정"
+            android:backgroundTint="#009688"
             android:layout_marginTop="8dp" />
 
         <!-- 설정/로그아웃 구분선 -->
@@ -168,6 +171,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#EEEEEE"
+            android:backgroundTint="#009688"
             android:layout_marginTop="16dp" />
 
         <!-- 로그아웃 -->
@@ -176,6 +180,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="로그아웃"
+            android:backgroundTint="#009688"
             android:layout_marginTop="16dp"
             android:textAllCaps="false" />
 

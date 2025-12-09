@@ -1,16 +1,17 @@
+// ==== FirebasePostManager.java (수정본 전체 복붙) ====
 package kr.ac.dankook.autoinfo.firebase;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import kr.ac.dankook.autoinfo.models.InfoPost;
+import kr.ac.dankook.autoinfo.models.Post;
 
 /**
  * 인포(정보 상품) 관련 Firestore 접근 전담 매니저
@@ -40,13 +41,18 @@ public class FirebasePostManager {
     // -------------------------------
     // 1) 인포 등록 (Create)
     // -------------------------------
-    public void createPost(InfoPost post, @NonNull OnPostResultListener listener) {
-        // Firestore에 문서 추가 (ID는 Firestore가 자동으로 생성)
+    public void createPost(@NonNull Post post,
+                           @NonNull OnPostResultListener listener) {
+
+        // id 필드는 Firestore 문서 ID로 관리 → 저장할 땐 빼도 됨
+        // (그냥 객체 전체를 넣어도 되지만 깔끔하게 하려면 Map으로 빼는 방법도 있음)
         postsRef.add(post)
                 .addOnSuccessListener(docRef -> {
-                    // 방금 생성된 문서의 ID를 InfoPost에도 반영하고 싶으면:
+                    // 생성된 문서 ID를 Post 객체에도 넣고 싶으면:
                     String generatedId = docRef.getId();
-                    // 여기서 필요하면 docRef.update("id", generatedId); 같은 것도 가능
+                    post.setId(generatedId);
+                    // Firestore 필드에도 id 넣고 싶으면 이 줄 추가:
+                    // docRef.update("id", generatedId);
 
                     listener.onSuccess();
                 })
@@ -54,20 +60,21 @@ public class FirebasePostManager {
     }
 
     // -------------------------------
-    // 2) 마켓에서 쓸 전체 인포 목록 조회 (status 조건 없이 전체)
-    //    필요하면 나중에 PUBLIC만, 카테고리별 등으로 확장
+    // 2) 마켓에서 쓸 전체 인포 목록 조회 (예: 가격순 정렬)
     // -------------------------------
     public void getAllPosts(@NonNull OnPostsResultListener listener) {
         postsRef
-                .orderBy("price", Query.Direction.DESCENDING) // 예시로 가격순 정렬
+                .orderBy("price", Query.Direction.DESCENDING) // 예시로 가격 내림차순
                 .get()
                 .addOnSuccessListener(querySnapshot -> {
-                    List<InfoPost> result = new ArrayList<>();
+                    List<Post> result = new ArrayList<>();
 
-                    for (var doc : querySnapshot.getDocuments()) {
-                        InfoPost post = doc.toObject(InfoPost.class);
+                    // ⚠ 안드로이드는 var 못 씀 → DocumentSnapshot으로 명시
+                    for (DocumentSnapshot doc : querySnapshot.getDocuments()) {
+                        Post post = doc.toObject(Post.class);
                         if (post != null) {
-                            // 필요하면 doc.getId()를 post.setId(...)로 넣을 수도 있음
+                            // Firestore 문서 ID를 객체의 id 필드에 넣어줌
+                            post.setId(doc.getId());
                             result.add(post);
                         }
                     }
@@ -78,20 +85,21 @@ public class FirebasePostManager {
     }
 
     // -------------------------------
-    // 3) 특정 판매자(닉네임 기준)의 인포만 조회 (내 인포 관리용)
-    //    지금 InfoPost에 sellerId가 없어서 sellerName으로 필터
+    // 3) 특정 판매자(authorId 기준)의 인포만 조회
+    //    (지금 Post에 authorId 있음)
     // -------------------------------
-    public void getPostsBySellerName(@NonNull String sellerName,
-                                     @NonNull OnPostsResultListener listener) {
+    public void getPostsByAuthorId(@NonNull String authorId,
+                                   @NonNull OnPostsResultListener listener) {
         postsRef
-                .whereEqualTo("sellerName", sellerName)
+                .whereEqualTo("authorId", authorId)
                 .get()
                 .addOnSuccessListener(querySnapshot -> {
-                    List<InfoPost> result = new ArrayList<>();
+                    List<Post> result = new ArrayList<>();
 
-                    for (var doc : querySnapshot.getDocuments()) {
-                        InfoPost post = doc.toObject(InfoPost.class);
+                    for (DocumentSnapshot doc : querySnapshot.getDocuments()) {
+                        Post post = doc.toObject(Post.class);
                         if (post != null) {
+                            post.setId(doc.getId());
                             result.add(post);
                         }
                     }
@@ -113,8 +121,8 @@ public class FirebasePostManager {
 
     // 리스트 반환 타입 (목록 조회 등)
     public interface OnPostsResultListener {
-        void onSuccess(List<InfoPost> posts);
+        void onSuccess(List<Post> posts);
         void onError(Exception e);
     }
 }
-// === 여기까지 복붙 ===
+// ==== 여기까지 복붙 ====

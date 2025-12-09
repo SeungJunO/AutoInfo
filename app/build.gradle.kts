@@ -44,22 +44,20 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
 
-
-    // 프로젝트에 명시적으로 필요한 라이브러리들
+    // RecyclerView, Lifecycle 등
     implementation("androidx.recyclerview:recyclerview:1.3.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
-    implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
-    // Firebase (필요시 google-services 플러그인 및 프로젝트 레벨 설정 확인)
-    implementation("com.google.firebase:firebase-auth:22.1.1")
-    implementation("com.google.firebase:firebase-firestore:24.7.0")
-    implementation("com.google.firebase:firebase-analytics:21.3.0")
-    // === 여기부터 복붙: build.gradle.kts dependencies 블록 안에 추가 ===
-    implementation("com.google.firebase:firebase-firestore")
-    // === 여기까지 복붙 ===
 
+    // ===== Firebase BoM (버전 관리 통합) =====
+    implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
+
+    // ===== Firebase 라이브러리 (버전 없이) =====
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-analytics")
+    // =======================================
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-
 }

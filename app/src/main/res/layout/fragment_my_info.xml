@@ -36,6 +36,7 @@
                     android:id="@+id/btn_add_new_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="#009688"
                     android:text="+ 새 인포 등록" />
             </LinearLayout>
 
@@ -69,6 +70,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:backgroundTint="#009688"
                     android:text="전체" />
 
                 <Button
@@ -77,6 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="판매중"
+                    android:backgroundTint="#009688"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp" />
 
@@ -85,6 +88,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:backgroundTint="#009688"
                     android:text="숨김" />
             </LinearLayout>
 
