@@ -1,6 +1,7 @@
 package kr.ac.dankook.autoinfo;
 
 import androidx.appcompat.app.AppCompatActivity;
+import kr.ac.dankook.autoinfo.firebase.FirebaseAuthManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -64,17 +65,24 @@ public class SignupActivity extends AppCompatActivity {
                 return;
             }
 
-            // TODO: 여기 나중에 Firebase Auth 회원가입 코드 들어갈 자리
-            // 지금은 테스트용으로 그냥 "회원가입 완료" 토스트만 띄우고 로그인 화면으로 돌아감
-            Toast.makeText(SignupActivity.this,
-                    "회원가입 완료! 이제 로그인해주세요.",
-                    Toast.LENGTH_SHORT).show();
+            // 🔥 여기서 실제 Firebase 회원가입 호출
+            FirebaseAuthManager.getInstance()
+                    .signUpWithEmail(email, password, this, () -> {
+                        // 회원가입 성공 시 실행되는 onSuccess 콜백
+                        Toast.makeText(
+                                SignupActivity.this,
+                                "회원가입 완료! 이제 로그인해주세요.",
+                                Toast.LENGTH_SHORT
+                        ).show();
 
-            goToLogin();
+                        goToLogin();
+                    });
         });
 
         // 3) "로그인" 텍스트를 눌렀을 때 → 로그인 화면으로 이동
-        tvGoLogin.setOnClickListener(v -> goToLogin());
+        tvGoLogin.setOnClickListener(v -> {
+            goToLogin();
+        });
     }
 
     private void showError(String msg) {
@@ -85,8 +93,6 @@ public class SignupActivity extends AppCompatActivity {
     private void goToLogin() {
         tvError.setVisibility(View.GONE);
         Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
-        // 이전 화면으로 뒤로가기 눌렀을 때 쌓이지 않게 옵션을 줄 수도 있음 (선택)
-        // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish(); // 회원가입 화면 종료
     }

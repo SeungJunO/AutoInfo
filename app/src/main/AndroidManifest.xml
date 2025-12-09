@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    package="kr.ac.dankook.autoinfo">
 
     <application
         android:allowBackup="true"
@@ -20,14 +20,16 @@
         </activity>
 
         <!-- 메인 액티비티: 로그인 성공 후 들어가는 화면 -->
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:exported="false"/>
 
         <activity
             android:name=".NewInfoActivity"
             android:exported="false" />
 
         <!-- 나중에 회원가입 액티비티도 추가될 예정 -->
-        <activity android:name=".SignupActivity" />
+        <activity android:name=".SignupActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

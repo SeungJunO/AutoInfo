@@ -3,7 +3,11 @@ package kr.ac.dankook.autoinfo;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;   // ★ 추가
 import android.os.Bundle;
+
+import com.google.firebase.auth.FirebaseUser;
+import kr.ac.dankook.autoinfo.firebase.FirebaseAuthManager;
 
 import kr.ac.dankook.autoinfo.ui.MarketFragment;
 import kr.ac.dankook.autoinfo.ui.MyInfoFragment;
@@ -22,10 +26,10 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        // 앱 실행 시 첫 화면: 마켓 화면
+        // 앱 실행 시 기본 화면: 마켓
         replaceFragment(new MarketFragment());
 
-        // 네비게이션 탭 선택 시 화면 변경
+        // 네비게이션 탭 클릭 시 화면 변경
         bottomNavigationView.setOnItemSelectedListener(item -> {
             Fragment selected = null;
 
@@ -47,6 +51,21 @@ public class MainActivity extends AppCompatActivity {
             replaceFragment(selected);
             return true;
         });
+    }
+
+    // ★★★ 로그인 유무 확인 — 추가된 부분 ★★★
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser user = FirebaseAuthManager.getInstance().getCurrentUser();
+
+        if (user == null) {
+            // 로그인 안 되어 있으면 LoginActivity로 이동
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish(); // MainActivity 종료 (뒤로가기로 못 돌아오게)
+        }
     }
 
     // Fragment 교체 함수

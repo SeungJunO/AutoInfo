@@ -2,6 +2,8 @@ package kr.ac.dankook.autoinfo;
 // === 여기부터 복붙: LoginActivity.java ===
 import androidx.appcompat.app.AppCompatActivity;
 
+import kr.ac.dankook.autoinfo.firebase.FirebaseAuthManager;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,8 +18,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etEmail;
     private EditText etPassword;
     private Button btnLogin;
-    private TextView tvError;
     private TextView tvGoSignup;
+    private TextView tvError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,32 +30,31 @@ public class LoginActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btn_login);
-        tvError = findViewById(R.id.tv_error);
         tvGoSignup = findViewById(R.id.tv_go_signup);
+        tvError = findViewById(R.id.tv_error);
+
 
         // 2) 로그인 버튼 클릭 시
         btnLogin.setOnClickListener(v -> {
             String email = etEmail.getText().toString().trim();
-            String password = etPassword.getText().toString().trim();
+            String pass = etPassword.getText().toString().trim();
 
-            // 간단한 유효성 체크 (나중에 Firebase Auth로 바꿀 예정)
-            if (TextUtils.isEmpty(email)) {
-                showError("이메일을 입력해주세요.");
-                return;
-            }
-            if (TextUtils.isEmpty(password)) {
-                showError("비밀번호를 입력해주세요.");
+            if (TextUtils.isEmpty(email) || TextUtils.isEmpty(pass)) {
+                Toast.makeText(this, "이메일과 비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // TODO: 여기 나중에 Firebase Auth 로그인 코드 들어갈 자리
-            // 지금은 테스트용으로 그냥 MainActivity로 넘어가 보기
-            goToMain();
+            FirebaseAuthManager.getInstance()
+                    .signInWithEmail(email, pass, this, () -> {
+                        // 로그인 성공 후 실행되는 코드 (onSuccess)
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish(); // 로그인 화면은 종료
+                    });
         });
 
         // 3) 회원가입 텍스트 클릭 시
         tvGoSignup.setOnClickListener(v -> {
-            // 나중에 SignupActivity 만들면 여기로 이동
             Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
             startActivity(intent);
         });

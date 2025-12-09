@@ -1,5 +1,7 @@
 plugins {
-    alias(libs.plugins.android.application)
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -46,7 +48,7 @@ dependencies {
     // 프로젝트에 명시적으로 필요한 라이브러리들
     implementation("androidx.recyclerview:recyclerview:1.3.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
-
+    implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
     // Firebase (필요시 google-services 플러그인 및 프로젝트 레벨 설정 확인)
     implementation("com.google.firebase:firebase-auth:22.1.1")
     implementation("com.google.firebase:firebase-firestore:24.7.0")
