@@ -32,7 +32,7 @@
             android:id="@+id/et_info_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="인포 제목"
+            android:hint="제목"
             android:layout_marginTop="16dp" />
 
         <!-- 카테고리 -->
@@ -40,7 +40,7 @@
             android:id="@+id/et_info_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="카테고리 (예: 마케팅, 재테크)"
+            android:hint="카테고리"
             android:layout_marginTop="12dp" />
 
         <!-- 가격 -->
@@ -67,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:gravity="top|start"
-            android:hint="인포에 대한 설명을 입력하세요."
+            android:hint="제품에 대한 설명을 입력하세요."
             android:layout_marginTop="12dp"
             android:background="@android:drawable/edit_text" />
 

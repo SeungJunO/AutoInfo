@@ -9,10 +9,10 @@ import android.os.Bundle;
 import com.google.firebase.auth.FirebaseUser;
 import kr.ac.dankook.autoinfo.firebase.FirebaseAuthManager;
 
-import kr.ac.dankook.autoinfo.ui.MarketFragment;
-import kr.ac.dankook.autoinfo.ui.MyInfoFragment;
-import kr.ac.dankook.autoinfo.ui.ChatFragment;
+import kr.ac.dankook.autoinfo.ui.ProductsFragment;
+import kr.ac.dankook.autoinfo.ui.OrdersFragment;
 import kr.ac.dankook.autoinfo.ui.MyPageFragment;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,31 +26,25 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        // 앱 실행 시 기본 화면: 마켓
-        replaceFragment(new MarketFragment());
+        // ✅ 앱 실행 시 기본 화면: 제품 탭
+        replaceFragment(new ProductsFragment());
 
-        // 네비게이션 탭 클릭 시 화면 변경
         bottomNavigationView.setOnItemSelectedListener(item -> {
             Fragment selected = null;
-
             int id = item.getItemId();
 
-            if (id == R.id.nav_market) {
-                selected = new MarketFragment();
-            }
-            else if (id == R.id.nav_myinfo) {
-                selected = new MyInfoFragment();
-            }
-            else if (id == R.id.nav_chat) {
-                selected = new ChatFragment();
-            }
-            else if (id == R.id.nav_mypage) {
+            if (id == R.id.nav_products) {
+                selected = new ProductsFragment();
+            } else if (id == R.id.nav_orders) {
+                selected = new OrdersFragment();
+            } else if (id == R.id.nav_mypage) {
                 selected = new MyPageFragment();
             }
 
             replaceFragment(selected);
             return true;
         });
+
     }
 
     // ★★★ 로그인 유무 확인 — 추가된 부분 ★★★

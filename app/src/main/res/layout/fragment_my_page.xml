@@ -56,7 +56,7 @@
             android:id="@+id/tv_profile_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="내 인포, 구매 내역, 설정을 관리할 수 있어요."
+            android:text="내 상품을 관리할 수 있어요."
             android:textSize="12sp"
             android:textColor="#777777"
             android:layout_marginTop="8dp" />
@@ -139,21 +139,12 @@
             android:textStyle="bold"
             android:layout_marginTop="16dp" />
 
-        <!-- 내 구매함 -->
-        <Button
-            android:id="@+id/btn_my_purchases"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="내 구매함"
-            android:backgroundTint="#009688"
-            android:layout_marginTop="8dp" />
-
         <!-- 내 인포로 바로 가기 -->
         <Button
             android:id="@+id/btn_go_myinfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="내 인포 관리"
+            android:text="내 상품 관리"
             android:backgroundTint="#009688"
             android:layout_marginTop="8dp" />
 

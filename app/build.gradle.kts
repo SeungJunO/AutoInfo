@@ -50,12 +50,14 @@ dependencies {
 
     // ===== Firebase BoM (버전 관리 통합) =====
     implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     // ===== Firebase 라이브러리 (버전 없이) =====
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-analytics")
     // =======================================
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
