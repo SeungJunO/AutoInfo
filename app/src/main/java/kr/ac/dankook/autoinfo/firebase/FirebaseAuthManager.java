@@ -13,22 +13,16 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-/**
- * Firebase 인증을 한 곳에서 관리하는 매니저 클래스
- * - 싱글톤 패턴: 어디서든 getInstance()로 같은 객체를 사용
- * - 이메일/비밀번호 로그인, 회원가입 제공
- */
+
 public class FirebaseAuthManager {
 
     private static FirebaseAuthManager instance;
     private FirebaseAuth auth;
 
-    // private 생성자: 외부에서 new로 만들지 못하게
     private FirebaseAuthManager() {
         auth = FirebaseAuth.getInstance();
     }
 
-    // 싱글톤 인스턴스 가져오기
     public static FirebaseAuthManager getInstance() {
         if (instance == null) {
             instance = new FirebaseAuthManager();
@@ -36,7 +30,6 @@ public class FirebaseAuthManager {
         return instance;
     }
 
-    // 현재 로그인한 유저 (없으면 null)
     public FirebaseUser getCurrentUser() {
         return auth.getCurrentUser();
     }

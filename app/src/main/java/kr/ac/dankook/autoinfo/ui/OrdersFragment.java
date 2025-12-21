@@ -29,7 +29,6 @@ public class OrdersFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_orders, container, false);
 
-        // ✅ fragment_orders.xml의 id들과 반드시 일치해야 함
         EditText etVariant = root.findViewById(R.id.et_variant_id);
         EditText etQty = root.findViewById(R.id.et_quantity);
         EditText etName = root.findViewById(R.id.et_customer_name);
@@ -43,7 +42,6 @@ public class OrdersFragment extends Fragment {
             String name = etName.getText().toString().trim();
             String email = etEmail.getText().toString().trim();
 
-            // 1) 입력 검증
             if (variantId.isEmpty() || qtyStr.isEmpty()) {
                 tvStatus.setText("variantId, 수량은 필수입니다.");
                 return;
@@ -62,10 +60,8 @@ public class OrdersFragment extends Fragment {
                 return;
             }
 
-            // 2) 상태 표시
             tvStatus.setText("Shopify checkoutUrl 생성 중...");
 
-            // 3) ✅ 서버 없이 Shopify Storefront API 직접 호출
             ShopifyCheckoutClient.createCheckout(
                     variantId,
                     qty,
@@ -74,7 +70,6 @@ public class OrdersFragment extends Fragment {
                     new ShopifyCheckoutClient.ResultCallback() {
                         @Override
                         public void onSuccess(@NonNull String checkoutUrl) {
-                            // 콜백은 백그라운드 스레드일 수 있으니 UI 스레드로
                             requireActivity().runOnUiThread(() -> {
                                 tvStatus.setText("결제 페이지로 이동합니다.");
                                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(checkoutUrl));

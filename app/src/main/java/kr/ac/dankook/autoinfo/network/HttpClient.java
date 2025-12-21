@@ -2,9 +2,7 @@ package kr.ac.dankook.autoinfo.network;
 
 import okhttp3.OkHttpClient;
 
-/**
- * OkHttpClient를 앱 전체에서 재사용하기 위한 싱글톤
- */
+
 public class HttpClient {
     private static OkHttpClient instance;
 

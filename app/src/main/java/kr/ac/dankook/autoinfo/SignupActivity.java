@@ -25,9 +25,8 @@ public class SignupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);  // 방금 만든 XML 사용
+        setContentView(R.layout.activity_signup);
 
-        // 1) XML과 코드 연결 (findViewById)
         etNickname = findViewById(R.id.et_nickname);
         etEmail = findViewById(R.id.et_signup_email);
         etPassword = findViewById(R.id.et_signup_password);
@@ -36,14 +35,12 @@ public class SignupActivity extends AppCompatActivity {
         tvError = findViewById(R.id.tv_signup_error);
         tvGoLogin = findViewById(R.id.tv_go_login);
 
-        // 2) 회원가입 버튼 클릭 시
         btnSignup.setOnClickListener(v -> {
             String nickname = etNickname.getText().toString().trim();
             String email = etEmail.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
             String passwordConfirm = etPasswordConfirm.getText().toString().trim();
 
-            // 기본 유효성 검사
             if (TextUtils.isEmpty(nickname)) {
                 showError("닉네임을 입력해주세요.");
                 return;
@@ -65,10 +62,8 @@ public class SignupActivity extends AppCompatActivity {
                 return;
             }
 
-            // 🔥 여기서 실제 Firebase 회원가입 호출
             FirebaseAuthManager.getInstance()
                     .signUpWithEmail(email, password, this, () -> {
-                        // 회원가입 성공 시 실행되는 onSuccess 콜백
                         Toast.makeText(
                                 SignupActivity.this,
                                 "회원가입 완료! 이제 로그인해주세요.",
@@ -79,7 +74,6 @@ public class SignupActivity extends AppCompatActivity {
                     });
         });
 
-        // 3) "로그인" 텍스트를 눌렀을 때 → 로그인 화면으로 이동
         tvGoLogin.setOnClickListener(v -> {
             goToLogin();
         });
@@ -94,7 +88,6 @@ public class SignupActivity extends AppCompatActivity {
         tvError.setVisibility(View.GONE);
         Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
         startActivity(intent);
-        finish(); // 회원가입 화면 종료
+        finish();
     }
 }
-// === 여기까지 복붙: SignupActivity.java ===

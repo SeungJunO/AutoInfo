@@ -44,19 +44,15 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
 
-    // RecyclerView, Lifecycle 등
     implementation("androidx.recyclerview:recyclerview:1.3.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
 
-    // ===== Firebase BoM (버전 관리 통합) =====
     implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
-    // ===== Firebase 라이브러리 (버전 없이) =====
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-analytics")
-    // =======================================
 
 
     testImplementation(libs.junit)

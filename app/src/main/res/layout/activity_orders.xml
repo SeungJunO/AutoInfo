@@ -3,17 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="12dp">
+    android:padding="16dp">
 
-    <Button
-        android:id="@+id/btn_add_product"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="상품 추가" />
+        android:text="주문 내역"
+        android:textSize="22sp"
+        android:textStyle="bold"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_posts"
+    <TextView
+        android:id="@+id/tv_orders"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:text="로딩 중..."
         android:layout_marginTop="12dp"/>
 </LinearLayout>

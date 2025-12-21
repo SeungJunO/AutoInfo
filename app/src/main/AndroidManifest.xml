@@ -21,7 +21,8 @@
             </intent-filter>
         </activity>
 
-        <!-- 메인 액티비티: 로그인 성공 후 들어가는 화면 -->
+        <activity android:name=".OrdersActivity" />
+
         <activity android:name=".MainActivity"
             android:exported="false"/>
 
@@ -29,7 +30,6 @@
             android:name=".NewInfoActivity"
             android:exported="false" />
 
-        <!-- 나중에 회원가입 액티비티도 추가될 예정 -->
         <activity android:name=".SignupActivity"
             android:exported="false"/>
     </application>

@@ -1,4 +1,3 @@
-// app/src/main/java/kr/ac/dankook/autoinfo/models/Post.java
 package kr.ac.dankook.autoinfo.models;
 
 public class Post {

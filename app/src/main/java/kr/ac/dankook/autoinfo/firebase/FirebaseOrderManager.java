@@ -3,6 +3,15 @@ package kr.ac.dankook.autoinfo.firebase;
 import kr.ac.dankook.autoinfo.models.Order;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import androidx.annotation.NonNull;
+
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class FirebaseOrderManager {
 
@@ -22,11 +31,30 @@ public class FirebaseOrderManager {
         return instance;
     }
 
-    // 주문 생성
     public void createOrder(Order order) {
         ordersRef.add(order);
     }
 
-    // 내 구매함 불러오기: buyerId 기준으로 쿼리하는 메소드 나중에 추가
+    public interface OnOrdersResultListener {
+        void onSuccess(List<Order> orders);
+        void onError(Exception e);
+    }
+
+    public void getOrdersByBuyer(@NonNull String buyerId,
+                                 @NonNull OnOrdersResultListener listener) {
+
+        ordersRef.whereEqualTo("buyerId", buyerId)
+                .get()
+                .addOnSuccessListener(querySnapshot -> {
+                    List<Order> result = new ArrayList<>();
+                    for (QueryDocumentSnapshot doc : querySnapshot) {
+                        Order order = doc.toObject(Order.class);
+                        result.add(order);
+                    }
+                    listener.onSuccess(result);
+                })
+                .addOnFailureListener(listener::onError);
+    }
+
+
 }
-// === 여기까지 복붙 ===

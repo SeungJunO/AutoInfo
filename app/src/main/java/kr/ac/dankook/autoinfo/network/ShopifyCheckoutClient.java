@@ -14,22 +14,13 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-/**
- * ✅ (무료 루트) 서버 없이 Android에서 Shopify Storefront API로 checkoutUrl 생성
- * - 결제는 Shopify checkout 웹페이지에서 진행됨
- * - DSers는 Shopify 주문을 동기화해서 처리
- *
- * ⚠️ 주의: Storefront Token이 앱에 들어가면 노출 가능성이 있음 (MVP/과제용으로 OK)
- */
+
 public class ShopifyCheckoutClient {
 
-    // =========================
-    // ✅ 너가 바꿔야 하는 부분 (3개)
-    // =========================
-    private static final String SHOP_DOMAIN = "gi1598-gr.myshopify.com"; // 예: abc-store.myshopify.com
-    private static final String API_VERSION = "2025-10";
-    private static final String STOREFRONT_TOKEN = "";   // Shopify Storefront Access Token
 
+    private static final String SHOP_DOMAIN = "gi1598-gr.myshopify.com";
+    private static final String API_VERSION = "2025-10";
+    private static final String STOREFRONT_TOKEN = "";
     private static final String ENDPOINT =
             "https://" + SHOP_DOMAIN + "/api/" + API_VERSION + "/graphql.json";
 
@@ -39,10 +30,10 @@ public class ShopifyCheckoutClient {
     }
 
     public static void createCheckout(
-            @NonNull String variantGid, // 예: gid://shopify/ProductVariant/123...
+            @NonNull String variantGid,
             int quantity,
-            String customerEmail,       // 있으면 넣는 걸 추천(영수증/연락)
-            String customerName,        // 옵션
+            String customerEmail,
+            String customerName,
             @NonNull ResultCallback cb
     ) {
         try {
@@ -55,10 +46,8 @@ public class ShopifyCheckoutClient {
                             + " }"
                             + "}";
 
-            // 2) variables 만들기
             JSONObject input = new JSONObject();
 
-            // lineItems: [{ variantId, quantity }]
             JSONArray lineItems = new JSONArray();
             JSONObject item = new JSONObject();
             item.put("variantId", variantGid);
@@ -66,13 +55,10 @@ public class ShopifyCheckoutClient {
             lineItems.put(item);
             input.put("lineItems", lineItems);
 
-            // email (추천)
             if (customerEmail != null && !customerEmail.isEmpty()) {
                 input.put("email", customerEmail);
             }
 
-            // name(옵션) -> shippingAddress에 최소로만
-            // 주소는 checkout 웹페이지에서 사용자가 직접 입력하게 둠
             if (customerName != null && !customerName.isEmpty()) {
                 String[] parts = customerName.trim().split(" ");
                 String firstName = parts.length > 0 ? parts[0] : "";
@@ -97,7 +83,6 @@ public class ShopifyCheckoutClient {
                     MediaType.parse("application/json; charset=utf-8")
             );
 
-            // 3) HTTP 요청
             Request req = new Request.Builder()
                     .url(ENDPOINT)
                     .addHeader("Content-Type", "application/json")

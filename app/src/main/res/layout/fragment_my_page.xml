@@ -10,21 +10,18 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- 1) 프로필 영역 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <!-- 프로필 동그라미 -->
             <View
                 android:id="@+id/view_profile_avatar"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:background="@android:color/darker_gray" />
 
-            <!-- 닉네임 + 이메일 -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -51,7 +48,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- 간단 설명 -->
         <TextView
             android:id="@+id/tv_profile_subtitle"
             android:layout_width="match_parent"
@@ -61,14 +57,12 @@
             android:textColor="#777777"
             android:layout_marginTop="8dp" />
 
-        <!-- 구분선 -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#DDDDDD"
             android:layout_marginTop="16dp" />
 
-        <!-- 2) 간단한 요약 통계 (내 인포 / 내 구매) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -89,6 +83,7 @@
                     android:text="0"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -122,14 +117,12 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- 구분선 -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#EEEEEE"
             android:layout_marginTop="16dp" />
 
-        <!-- 3) 메뉴 영역 -->
         <TextView
             android:id="@+id/tv_menu_title"
             android:layout_width="match_parent"
@@ -139,7 +132,6 @@
             android:textStyle="bold"
             android:layout_marginTop="16dp" />
 
-        <!-- 내 인포로 바로 가기 -->
         <Button
             android:id="@+id/btn_go_myinfo"
             android:layout_width="match_parent"
@@ -147,8 +139,14 @@
             android:text="내 상품 관리"
             android:backgroundTint="#009688"
             android:layout_marginTop="8dp" />
+        <Button
+            android:id="@+id/btn_my_orders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#009688"
+            android:text="주문 내역"
+            android:layout_marginTop="12dp"/>
 
-        <!-- 알림/키워드 설정 (나중에 구현 예정) -->
         <Button
             android:id="@+id/btn_alert_settings"
             android:layout_width="match_parent"
@@ -157,7 +155,6 @@
             android:backgroundTint="#009688"
             android:layout_marginTop="8dp" />
 
-        <!-- 설정/로그아웃 구분선 -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -165,7 +162,6 @@
             android:backgroundTint="#009688"
             android:layout_marginTop="16dp" />
 
-        <!-- 로그아웃 -->
         <Button
             android:id="@+id/btn_logout"
             android:layout_width="match_parent"
@@ -177,4 +173,3 @@
 
     </LinearLayout>
 </ScrollView>
-    <!-- === 여기까지 복붙: fragment_my_page.xml === -->

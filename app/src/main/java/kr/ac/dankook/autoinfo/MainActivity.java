@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        // ✅ 앱 실행 시 기본 화면: 제품 탭
         replaceFragment(new ProductsFragment());
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -47,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // ★★★ 로그인 유무 확인 — 추가된 부분 ★★★
     @Override
     protected void onStart() {
         super.onStart();
@@ -55,14 +53,12 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuthManager.getInstance().getCurrentUser();
 
         if (user == null) {
-            // 로그인 안 되어 있으면 LoginActivity로 이동
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
-            finish(); // MainActivity 종료 (뒤로가기로 못 돌아오게)
+            finish();
         }
     }
 
-    // Fragment 교체 함수
     private void replaceFragment(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()

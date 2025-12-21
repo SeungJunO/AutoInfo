@@ -1,4 +1,3 @@
-// app/src/main/java/kr/ac/dankook/autoinfo/models/Order.java
 package kr.ac.dankook.autoinfo.models;
 
 public class Order {
