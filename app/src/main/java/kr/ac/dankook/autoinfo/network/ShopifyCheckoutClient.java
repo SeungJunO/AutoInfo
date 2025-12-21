@@ -20,7 +20,7 @@ public class ShopifyCheckoutClient {
 
     private static final String SHOP_DOMAIN = "gi1598-gr.myshopify.com";
     private static final String API_VERSION = "2025-10";
-    private static final String STOREFRONT_TOKEN = "";
+    private static final String STOREFRONT_TOKEN = ""; //개인키 입력
     private static final String ENDPOINT =
             "https://" + SHOP_DOMAIN + "/api/" + API_VERSION + "/graphql.json";
 
