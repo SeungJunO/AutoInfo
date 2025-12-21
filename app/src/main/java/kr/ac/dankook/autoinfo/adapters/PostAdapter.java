@@ -1,4 +1,3 @@
-// app/src/main/java/kr/ac/dankook/autoinfo/adapters/PostAdapter.java
 package kr.ac.dankook.autoinfo.adapters;
 
 import android.view.LayoutInflater;

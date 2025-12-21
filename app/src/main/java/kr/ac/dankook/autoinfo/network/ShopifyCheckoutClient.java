@@ -26,9 +26,9 @@ public class ShopifyCheckoutClient {
     // =========================
     // ✅ 너가 바꿔야 하는 부분 (3개)
     // =========================
-    private static final String SHOP_DOMAIN = "너의스토어.myshopify.com"; // 예: abc-store.myshopify.com
+    private static final String SHOP_DOMAIN = "gi1598-gr.myshopify.com"; // 예: abc-store.myshopify.com
     private static final String API_VERSION = "2025-10";
-    private static final String STOREFRONT_TOKEN = "스토어프론트토큰";   // Shopify Storefront Access Token
+    private static final String STOREFRONT_TOKEN = "";   // Shopify Storefront Access Token
 
     private static final String ENDPOINT =
             "https://" + SHOP_DOMAIN + "/api/" + API_VERSION + "/graphql.json";
