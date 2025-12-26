@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "662139741028",
+    "project_id": "autoi-59f39",
+    "storage_bucket": "autoi-59f39.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:662139741028:android:f2e63f419f2070c6f8d071",
+        "android_client_info": {
+          "package_name": "kr.ac.dankook.autoinfo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhoNmK4UIQBEa67UyHOCYv6P8yNbP8388"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
